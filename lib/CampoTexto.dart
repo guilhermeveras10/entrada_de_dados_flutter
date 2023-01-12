@@ -1,13 +1,14 @@
 import 'package:flutter/material.dart';
 
 class CampoTexto extends StatefulWidget {
-  const CampoTexto({super.key});
-
   @override
-  State<CampoTexto> createState() => _CampoTextoState();
+  _CampoTextoState createState() => _CampoTextoState();
 }
 
 class _CampoTextoState extends State<CampoTexto> {
+
+  TextEditingController _textEditingController = TextEditingController();
+
   @override
   Widget build(BuildContext context) {
     return Scaffold(
@@ -19,23 +20,39 @@ class _CampoTextoState extends State<CampoTexto> {
           Padding(
             padding: EdgeInsets.all(32),
             child: TextField(
+              //text, number, emailAddress, datetime
               keyboardType: TextInputType.number,
               decoration: InputDecoration(
-                labelText: "digite um valor"
+                labelText: "Digite um valor"
               ),
-              // enabled: true,
-              // maxLength: 2,
+              //enabled: false,
+              //maxLength: 2,
+              //maxLengthEnforced: false,
               style: TextStyle(
-                fontSize: 25,
-                color: Colors.amber
+                fontSize: 50,
+                color: Colors.green
               ),
-              // obscureText: true,
-              onChanged: (String e) {
-                
+              //obscureText: true,
+              /*
+              onChanged: (String texto){
+                print("valor digitado:" +  texto);
+              },*/
+              onSubmitted: (String texto){
+                print("valor digitado:" +  texto);
               },
+              controller: _textEditingController,
+
             ),
           ),
-        ]),
+          ElevatedButton(
+            child: Text("Salvar"),
+            style: ElevatedButton.styleFrom(backgroundColor: Colors.lightGreen),
+            onPressed: (){
+              print("valor digitado:" +  _textEditingController.text );
+            },
+          )
+        ],
+      ),
     );
   }
 }
